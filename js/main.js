@@ -5,6 +5,20 @@ let bot = new Farmbot({ token: SUPER_SECRET_TOKEN });
 
 bot
     .connect()
-    .then(function () {
-        return bot.moveRelative({ x: 100, y: 2, z: 3, speed: 100 });
-    });
+.then(function(bot){
+  console.log("Bot online!");
+  return bot.moveRelative({ x: 400, y: 600, z: 10, speed: 100 }); // You can chain commands.
+})
+.then(function(bot){
+  return bot.takePhoto({});
+})
+.then(function(bot){
+    return bot.home({speed : 100 , axis : x});
+  })
+.then(function(bot){
+    return bot.home({speed : 100 , axis : y});
+  })
+.then(function(bot){
+    return bot.home({speed : 100 , axis : z});
+  });
+   
