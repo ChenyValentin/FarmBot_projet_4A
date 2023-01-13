@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "dependencies": {
+    "farmbot": "^15.6.1"
+  }
+}
