@@ -1,6 +1,10 @@
+import time
 from modifiedLibrary.farmbot import Farmbot, FarmbotToken
 import threading
-import re
+
+# Variables à remplacer
+mail = "clement_dormois@etu.u-bourgogne.fr"
+password = "FARMBOTCLEMENTVAL"
 
 
 class MyHandler:
@@ -34,24 +38,19 @@ class MyHandler:
 
 
 if __name__ == '__main__':
-    raw_token = FarmbotToken.download_token("clement_dormois@etu.u-bourgogne.fr",
-                                            "FARMBOTCLEMENTVAL",
+    raw_token = FarmbotToken.download_token(mail,
+                                            password,
                                             "https://my.farm.bot")
     bot = Farmbot(raw_token)
     handler = MyHandler(bot)
     threading.Thread(target=bot.connect, name="foo", args=[handler]).start()
 
-instructions = ["bot.move_absolute(x=400, y=600, z=10)",
-                "bot.take_photo()", "bot.save_photo()", "bot.go_to_home()"]
+instructions = ["bot.move_absolute(x=400, y=600, z=-20)",
+                "bot.take_photo()", "bot.go_to_home()", "bot.save_photo()"]
 
-for cmd in instructions : 
-    while handler.busy :
+for cmd in instructions:
+    while handler.busy:
         pass
     print(cmd)
     eval(cmd)
-    pattern = re.compile(r"(\(.*\))")
-    while
-
-# Envoyer une instruction LUA au Farmbot
-bot.send_message({"kind": "send_message", "args": {
-                 "message": "lua.print('Hello, World!')"}})
+    time.sleep(2)
