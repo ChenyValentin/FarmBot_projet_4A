@@ -1,12 +1,14 @@
+"""
+Permet de tester des commandes en les écrivants dans la console.
+"""
+
 from modifiedLibrary.farmbot import Farmbot, FarmbotToken
 import threading
 
+
 class MyHandler:
     def __init__(self, bot):
-        # Store "Z", "Q", "S", "D" in a queue
         self.queue = []
-        # Maintain a flag that lets us know if the bot is
-        # ready for more commands.
         self.busy = True
         self.bot = bot
 
@@ -75,7 +77,3 @@ while(True):
     user_input = input("> ")
     handler.add_job(user_input)
     handler.try_next_job()
-
-
-# Envoyer une instruction LUA au Farmbot
-bot.send_message({"kind": "send_message", "args": {"message": "lua.print('Hello, World!')"}})
